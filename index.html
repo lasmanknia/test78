@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prank</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        button {
+            font-size: 16px;
+            padding: 10px 20px;
+            margin: 10px;
+        }
+        #popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: #fff;
+            border: 2px solid #333;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <h2>Are you Gay?</h2>
+<div>
+    <button onclick="showMessage('if you wait here 10s you phone will be hack'); playAudio()">Yes</button>
+    <button onclick="showMessage('if you wait here 10s you phone will be hack'); playAudio()">No</button>
+</div>
+    <div id="popup"></div>
+
+    <script>
+        let audio;
+
+        function playAudio() {
+            if (!audio) {
+                audio = new Audio('a.mp3'); // replace 'your-audio-file.mp3' with the path to your audio file
+                audio.loop = true;
+            }
+            audio.play();
+        }
+
+
+        function showMessage(message) {
+            const popup = document.getElementById('popup');
+            popup.innerHTML = `<p>${message}</p>`;
+            popup.style.display = 'block';
+
+            setTimeout(() => {
+                popup.style.display = 'none';
+            }, 3000); // Hide the popup after 3 seconds
+        }
+
+        // Keep audio playing on page refresh
+        window.addEventListener('beforeunload', function (e) {
+            if (audio) {
+                e.preventDefault();
+                e.returnValue = '';
+            }
+        });
+    </script>
+</body>
+</html>
